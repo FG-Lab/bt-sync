@@ -98,6 +98,7 @@ void setup()
     _assert("Setting role to slave...           ", "AT+ROLE=0", slave, setup_error);
     _assert("Setting pin to 1205...             ", "AT+PSWD=\"1205\"", slave, setup_error);
     _assert("Setting connection mode to bind... ", "AT+CMODE=0", slave, setup_error);
+    _assert("Setting baudrate to 3840...        ", "AT+UART=38400,0,0", slave, setup_error);
 
     slave_addr = at_cmd("AT+ADDR?", slave).substring(6, 20);
     slave_addr_param = '"' + slave_addr.substring(0, 4) + ","
@@ -115,6 +116,7 @@ void setup()
     _assert("Setting role to master...          ", "AT+ROLE=1", master, setup_error);
     _assert("Setting pin to 1205...             ", "AT+PSWD=\"1205\"", master, setup_error);
     _assert("Setting connection mode to bind... ", "AT+CMODE=0", master, setup_error);
+    _assert("Setting baudrate to 38400...       ", "AT+UART=38400,0,0", master, setup_error);
     _assert("Binding to address " + slave_addr + "...", "AT+BIND=" + slave_addr_param, master, setup_error);
 
     master.end();
